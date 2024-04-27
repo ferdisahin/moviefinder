@@ -1,6 +1,6 @@
 const baseURL =
-	process.env.NODE_ENV === "production"
-		? process.env.NEXT_PUBLIC_VERCEL_URL
+	process.env.VERCEL_ENV === "production"
+		? process.env.VERCEL_URL
 		: "http://localhost:3000";
 
 export const getData = async (slug, limit = null, lang = "en-US", page = null) => {
