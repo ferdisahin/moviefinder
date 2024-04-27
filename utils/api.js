@@ -1,6 +1,6 @@
 const baseURL =
 	process.env.NODE_ENV === "production"
-		? 'http://localhost:3000'
+		? 'moviefinder-rho.vercel.app'
 		: "http://localhost:3000";
 
 export const getData = async (slug, limit = null, lang = "en-US", page = null) => {
