@@ -43,7 +43,7 @@ function SearchForm(){
 				/>
 			</div>
 			{searchResult.length > 0 && (
-				<div className="absolute top-full left-0 right-0 bg-gray-800 rounded p-3">
+				<div className="absolute top-full left-0 right-0 bg-gray-800 rounded p-3 z-30">
 					<div className="text-xs uppercase text-zinc-400 font-bold mb-1">Search Results</div>
 					<div>
 						{searchResult.map((item, index) => (
@@ -52,8 +52,8 @@ function SearchForm(){
 									{item.poster_path ? (
 										<Image
 											fill
-											unoptimized
-											src={`https://image.tmdb.org/t/p/w300/${item.poster_path}`}
+
+											src={`https://media.themoviedb.org/t/p/w300/${item.poster_path}`}
 											alt={item.title}
 											className="object-cover w-full h-full rounded"
 										/>

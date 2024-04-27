@@ -16,9 +16,8 @@ export default function RootLayout({ children }) {
         <html lang="en">
         <body className={`bg-gray-900 font-inter antialiased text-white min-h-svh flex ${inter.className}`}>
             <Sidebar />
-            <div className="flex-1 flex flex-col pr-5">
+            <div className="flex-1 flex flex-col pr-5 h-svh overflow-y-auto max-w-6xl mx-auto">
                 <SearchForm />
-
                 {children}
             </div>
         </body>
