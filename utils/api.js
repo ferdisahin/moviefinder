@@ -1,6 +1,6 @@
 const baseURL =
 	process.env.NODE_ENV === "production"
-		? "https://moviefinder-sooty.vercel.app/"
+		? process.env.NEXT_PUBLIC_VERCEL_URL
 		: "http://localhost:3000";
 
 export const getData = async (slug, limit = null, lang = "en-US", page = null) => {
@@ -12,7 +12,8 @@ export const getData = async (slug, limit = null, lang = "en-US", page = null) =
 
 	const data = await res.json()
 
-	if(limit !== null) return data.results.splice(0, limit)
+	if(limit !== null) return data.results.slice(0, limit)
+
 
 	return data
 }
