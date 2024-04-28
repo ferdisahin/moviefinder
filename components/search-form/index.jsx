@@ -38,7 +38,7 @@ function SearchForm(){
 				<input
 					type="text"
 					className="w-full bg-transparent h-10 text-sm !ring-0 !outline-none"
-					placeholder="Search Movies or TV Series"
+					placeholder="Search Movie"
 					onChange={(e) => getMovies(e.currentTarget.value)}
 				/>
 			</div>
