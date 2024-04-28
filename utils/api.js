@@ -1,4 +1,4 @@
-export async function getApiData(pageName = "", type = "movie", id = null, limit = null, page = 1){
+export async function getApiData(pageName = "", type = "movie", id = null, limit = null, page = 1, query = false){
 	const options = {
 		method: 'GET',
 		headers: {
@@ -9,8 +9,9 @@ export async function getApiData(pageName = "", type = "movie", id = null, limit
 	pageName = pageName ? `${pageName}` : ''
 	id = id ? `/${id}` : ''
 	type = type ? `/${type}` : ''
+	query = query ? `?query=${query}&include_adult=false` : ''
 
-	const res = await fetch(`https://api.themoviedb.org/3/${pageName}${id}${type}?language=en&page=${page}`, options)
+	const res = await fetch(`https://api.themoviedb.org/3/${pageName}${id}${type}${query}?language=en&page=${page}`, options)
 
 	if(!res.ok){
 		throw new Error('Failed to fetch data')

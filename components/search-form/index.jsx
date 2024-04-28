@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import {getYear} from "@/utils/functions";
 import {VscLoading} from "react-icons/vsc";
-import {usePathname, useRouter} from "next/navigation";
+import {usePathname} from "next/navigation";
 
 function SearchForm(){
 	const pathname = usePathname()
@@ -16,7 +16,7 @@ function SearchForm(){
 
 	const getMovies = async (query) => {
 		setLoading(true)
-		const res = await fetch(`http://localhost:3000/api/search?q=${query}`)
+		const res = await fetch(`/api/search?q=${query}`)
 		const data = await res.json()
 		setSearchResult(data.results.slice(0,5))
 		setLoading(false)

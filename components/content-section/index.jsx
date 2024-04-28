@@ -4,7 +4,6 @@ import Image from "next/image";
 import {getYear} from "@/utils/functions";
 
 async function ContentSection(props) {
-
 	const grid = props.grid ?? 6
 
 	return (
