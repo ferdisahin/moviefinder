@@ -1,19 +1,11 @@
 "use client"
 
-import React, {useState} from 'react';
-import {IoIosArrowDown} from "react-icons/io";
 import Link from "next/link";
 import {usePathname} from "next/navigation";
 
-function Dropdown({movies, tvs}) {
+function Dropdown({movies}) {
 
 	const pathname = usePathname()
-	const [activeMenu, setActiveMenu] = useState('')
-
-
-	const handleClick = (menu) => {
-		setActiveMenu(menu)
-	}
 
 	return (
 

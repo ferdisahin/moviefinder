@@ -1,8 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-	env: {
-		apiURL: 'https://moviefinder-rho.vercel.app'
-	},
 	images: {
 		remotePatterns: [
 			{

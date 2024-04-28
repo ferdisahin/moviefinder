@@ -1,19 +1,14 @@
 import React from 'react';
-import Image from "next/image";
 import Featured from "@/components/featured";
 import ContentSection from "@/components/content-section";
-import {getCredits, getData} from "@/utils/api";
 
-async function Page({params}) {
+import {getApiData} from "@/utils/api";
 
-	const [
-		featured,
-		popular,
-		topRated
-	] = await Promise.all([
-		getData('featured', 6),
-		getData('popular', 12),
-		getData('top-rated', 12)
+async function Page() {
+	const [featured, popular, topRated] = await Promise.all([
+		getApiData('movie', 'popular', null,6),
+		getApiData('movie', 'popular', null,12),
+		getApiData('movie', 'top_rated', null,12)
 	])
 
 	return (

@@ -1,8 +1,6 @@
 import React from 'react';
-import {getData} from "@/utils/api";
+import {getApiData} from "@/utils/api";
 import ContentSection from "@/components/content-section";
-import {Button} from "@/components/ui/button"
-import Link from "next/link";
 import Pagination from "@/components/pagination";
 
 export const metadata = {
@@ -11,7 +9,7 @@ export const metadata = {
 }
 
 async function TopRatedPage({params}) {
-	const items = await getData('top-rated', null, '', params.page)
+	const items = await getApiData('movie', 'top_rated', null, null, params.page)
 
 	const currentPage = params.page ? Number(params.page) : 1
 	const totalPage = items.total_pages < 500 ? items.total_pages : 500

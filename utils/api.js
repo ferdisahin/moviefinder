@@ -1,69 +1,22 @@
-const baseURL =
-	process.env.VERCEL_ENV === "production"
-		? process.env.VERCEL_URL
-		: "http://localhost:3000";
+export async function getApiData(pageName = "", type = "movie", id = null, limit = null, page = 1){
+	const options = {
+		method: 'GET',
+		headers: {
+			accept: 'application/json',
+			Authorization: `Bearer ${process.env.API_ACCESS_TOKEN}`
+		}
+	};
+	pageName = pageName ? `${pageName}` : ''
+	id = id ? `/${id}` : ''
+	type = type ? `/${type}` : ''
 
-export const getData = async (slug, limit = null, lang = "en-US", page = null) => {
-	const res = await fetch(`${baseURL}/api/${slug}?lang=${lang}${page && `&page=${page}`} `)
+	const res = await fetch(`https://api.themoviedb.org/3/${pageName}${id}${type}?language=en&page=${page}`, options)
 
 	if(!res.ok){
 		throw new Error('Failed to fetch data')
 	}
 
-	const data = await res.json()
+	if(limit !== null) return (await res.json()).results.slice(0, limit)
 
-	if(limit !== null) return data.results.slice(0, limit)
-
-
-	return data
-}
-
-export const getMovie = async(id, lang = "en-US") => {
-	const res = await fetch(`${baseURL}/api/get-movie?id=${id}&lang=${lang}`)
-
-	if(!res.ok){
-		throw new Error('Failed to fetch movie')
-	}
-
-	return await res.json()
-}
-
-export const getVideo = async(id, lang = "en-US") => {
-	const res = await fetch(`${baseURL}/api/get-video?id=${id}&lang=${lang}`)
-
-	if(!res.ok){
-		throw new Error('Failed to fetch video')
-	}
-
-	return await res.json()
-}
-
-export const getCredits = async(id, lang = "en-US") => {
-	const res = await fetch(`${baseURL}/api/get-credits?id=${id}&lang=${lang}`)
-
-	if(!res.ok){
-		throw new Error('Failed to fetch credits')
-	}
-
-	return await res.json()
-}
-
-export const getRelated = async(id, lang = "en-US") => {
-	const res = await fetch(`${baseURL}/api/get-related?id=${id}&lang=${lang}`)
-
-	if(!res.ok){
-		throw new Error('Failed to fetch related movies')
-	}
-
-	return await res.json()
-}
-
-export const getGenre = async(platform = 'movies', lang = "en-US") => {
-	const res = await fetch(`${baseURL}/api/genres?platform=${platform}&lang=${lang}`)
-
-	if(!res.ok){
-		throw new Error('Failed to fetch genres')
-	}
-
-	return await res.json()
+	return res.json()
 }

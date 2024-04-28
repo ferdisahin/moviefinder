@@ -1,17 +1,12 @@
 import Logo from "@/components/sidebar/logo";
-
 import Title from "@/components/sidebar/title";
-
 import Dropdown from "@/components/sidebar/dropdown";
 import Menu from "@/components/sidebar/menu";
-import {getGenre} from "@/utils/api";
+
+import {getApiData} from "@/utils/api";
 
 async function Sidebar() {
-
-    const [movies, tvs] = await Promise.all([
-        getGenre('movie'),
-        getGenre('tv')
-    ])
+    const movies = await getApiData('genre', 'movie/list')
 
     return (
         <div className="w-80 p-5">
@@ -24,9 +19,8 @@ async function Sidebar() {
 
             <div className="mt-10 space-y-3">
                 <Title>Categories</Title>
-                <Dropdown movies={movies} tvs={tvs} />
+                <Dropdown movies={movies} />
             </div>
-
         </div>
     );
 }

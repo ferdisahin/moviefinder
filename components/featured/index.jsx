@@ -1,6 +1,5 @@
 import React from 'react';
 import Card from "@/components/featured/card";
-import {getData} from "@/utils/api";
 
 async function Featured(props) {
 	return (

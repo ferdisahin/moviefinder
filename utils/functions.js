@@ -16,7 +16,3 @@ export function getTime(minutes){
 	const remainingTime = minutes % 60
 	return `${hours}h ${remainingTime}m`
 }
-
-export default function baseURL(){
-	return process.env.NODE_ENV === "production" ? process.env.NEXT_PUBLIC_PROD_SITE_URL : process.env.NEXT_PUBLIC_DEV_SITE_URL
-}

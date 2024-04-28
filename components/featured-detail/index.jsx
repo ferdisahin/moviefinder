@@ -2,10 +2,10 @@ import React from 'react';
 import Image from "next/image";
 import {getTime} from "@/utils/functions";
 import TrailerButton from "@/components/featured-detail/trailer-button";
-import {getVideo} from "@/utils/api";
+import {getApiData} from "@/utils/api";
 
 async function FeaturedDetail({movie}) {
-	const trailer = await getVideo(movie.id)
+	const trailer = await getApiData('movie', 'videos', movie.id)
 	const trailerId = trailer.results.find(item => item.type === "Trailer")
 
 	return (
