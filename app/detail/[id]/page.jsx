@@ -4,7 +4,15 @@ import FeaturedDetail from "@/components/featured-detail";
 import Crew from "@/components/crew";
 import ContentSection from "@/components/content-section";
 
-export const metadata = {}
+export async function generateMetadata({params}){
+	const id = params.id
+	const movie = await getApiData('movie', '', id, null)
+
+	return {
+		title: movie.title,
+		description: `${movie.overview.substring(0, 120)}...`
+	}
+}
 
 async function DetailPage({params}) {
 	const [movie, credits, related] = await Promise.all([
@@ -13,8 +21,6 @@ async function DetailPage({params}) {
 		getApiData('movie', 'similar', params.id, 6)
 	])
 
-	metadata.title = movie.title
-	metadata.description = `${movie.overview.substring(0, 120)}...`;
 	return (
 		<div className="space-y-5">
 			<FeaturedDetail movie={movie} />
